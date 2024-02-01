@@ -13,12 +13,12 @@ const contactSchema = new mongoose.Schema({
     },
     mobile: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     userID: { type: mongoose.Types.ObjectId, ref: "users" }
 })
 
-contactSchema.set("timestamps", true)
+contactSchema.set("timestamps", true);
+contactSchema.index({ userID: 1, mobile: 1 }, { unique: true });
 
 module.exports = mongoose.model("contacts", contactSchema)
